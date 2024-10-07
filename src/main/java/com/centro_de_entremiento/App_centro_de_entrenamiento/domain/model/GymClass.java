@@ -6,23 +6,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "reservations")
-public class Reservation {
-
+@Entity(name = "gym_class")
+public class GymClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime date;
+    @ManyToOne
+    @JoinColumn(name = "id_gym")
+    private Gym gym;
     @ManyToOne
     @JoinColumn(name = "id_class")
     private Classes classes;
-    @ManyToOne
-    @JoinColumn(name = "id_user")
-    private User user;
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -16,6 +18,14 @@ public class Classes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
+    private String title;
+    @Column(nullable = false)
+    private String description;
+    @Column(nullable = false)
     private Integer capacity;
+    @OneToMany(mappedBy = "classes")
+    private Set<Reservation> reservations;
+    @OneToMany(mappedBy = "classes")
+    private Set<GymClass> gymClasses;
 
 }

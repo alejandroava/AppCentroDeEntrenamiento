@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -23,4 +25,15 @@ public class Gym {
     private String location;
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "id_userAdmin")
+    private User user;
+    @OneToMany(mappedBy = "gym")
+    private Set<User> userTrainer;
+
+    @OneToMany(mappedBy = "gym")
+    private Set<ClientGym> clientGyms;
+
+    @OneToMany(mappedBy = "gym")
+    private Set<GymClass> gymClasses;
 }
