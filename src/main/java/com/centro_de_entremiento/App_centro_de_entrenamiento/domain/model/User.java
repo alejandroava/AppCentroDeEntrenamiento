@@ -3,6 +3,8 @@ package com.centro_de_entremiento.App_centro_de_entrenamiento.domain.model;
 import com.centro_de_entremiento.App_centro_de_entrenamiento.utils.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,6 +48,13 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private Set<Reservation> reservations;
+
+    @CreatedBy
+    private String createBy;
+
+    @LastModifiedBy
+    private String modifyBy;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
